@@ -3,7 +3,6 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,21 +37,21 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        try{
+        try {
             String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
             String json = sandwiches[position];
 
             Sandwich sandwich = JsonUtils.parseSandwichJson(json);
             if (sandwich == null) {
                 // Sandwich data unavailable
-                Log.d("az","Sandwich data unavailable");
+//                Log.d("az","Sandwich data unavailable");
                 closeOnError();
                 return;
             }
 
             populateUI(sandwich);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -66,10 +65,11 @@ public class DetailActivity extends AppCompatActivity {
 
     /**
      * Display all Sandwich details
+     *
      * @param sandwich
      */
     private void populateUI(Sandwich sandwich) {
-        ImageView ingredientsIv= findViewById(R.id.image_iv);
+        ImageView ingredientsIv = findViewById(R.id.image_iv);
         TextView alsoNameDisplay = findViewById(R.id.also_known_tv);
         TextView ingredientsDisplay = findViewById(R.id.ingredients_tv);
         TextView descriptionDisplay = findViewById(R.id.description_tv);
@@ -81,12 +81,12 @@ public class DetailActivity extends AppCompatActivity {
 
         setTitle(sandwich.getMainName());
         List<String> nameList = sandwich.getAlsoKnownAs();
-        for(int i=0 ; i< nameList.size() ; i++){
+        for (int i = 0; i < nameList.size(); i++) {
             alsoNameDisplay.append(nameList.get(i) + ". ");
         }
 
         List<String> ingredientsList = sandwich.getIngredients();
-        for(int i=0 ; i< ingredientsList.size() ; i++){
+        for (int i = 0; i < ingredientsList.size(); i++) {
             ingredientsDisplay.append(ingredientsList.get(i) + ". ");
         }
 

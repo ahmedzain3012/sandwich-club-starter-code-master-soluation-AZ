@@ -1,7 +1,5 @@
 package com.udacity.sandwichclub.utils;
 
-import android.util.Log;
-
 import com.udacity.sandwichclub.model.Sandwich;
 
 import org.json.JSONArray;
@@ -25,13 +23,14 @@ public class JsonUtils {
     /**
      * This method parses JSON from MainActivity and return a Sandwich object
      * describing the sandwich detail
+     *
      * @param json
      * @return Sandwich object
      * @throws JSONException
      */
 
     public static Sandwich parseSandwichJson(String json) throws JSONException {
-        Log.d(TAG, "json = "+json);
+//        Log.d(TAG, "json = "+json);
         Sandwich sandwich = new Sandwich();
         JSONObject sandwichJson = new JSONObject(json);
 
@@ -50,14 +49,14 @@ public class JsonUtils {
 
         JSONArray knownAsArray = name.getJSONArray(AKA);
         List<String> alsoKnownAs = new ArrayList<>();
-        for(int i= 0 ; i< knownAsArray.length() ; i++){
+        for (int i = 0; i < knownAsArray.length(); i++) {
             alsoKnownAs.add(knownAsArray.getString(i));
         }
         sandwich.setAlsoKnownAs(alsoKnownAs);
 
         JSONArray ingredientsArray = sandwichJson.getJSONArray(INGREDIENTS);
         List<String> ingredientsList = new ArrayList<>();
-        for(int i=0 ; i< ingredientsArray.length() ; i++){
+        for (int i = 0; i < ingredientsArray.length(); i++) {
             ingredientsList.add(ingredientsArray.getString(i));
         }
         sandwich.setIngredients(ingredientsList);
